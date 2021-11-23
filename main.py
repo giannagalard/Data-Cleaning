@@ -46,4 +46,7 @@ X = df.iloc[:,:-1] # this line of code is the same as X = df.drop(['ca'], axis=1
 # the column of data that we want to predict
 y = df.iloc[:,-1] # this line of code is the same as y = df['ca']
 
+# print the head of both the X and y dataframes so that you can verify this worked correctly
+print(X.head())
+print(y.head())
 
