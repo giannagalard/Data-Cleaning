@@ -1,37 +1,37 @@
 import pandas as pd 
 import numpy as np
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
+# from sklearn.tree import DecisionTreeClassifier
+# from sklearn.model_selection import train_test_split
+# from sklearn.metrics import accuracy_score
 
 # load the heart data
-df = pd.read_csv('heartdata.csv')
+df = pd.read_csv('heartdata.csv') 
 
 # print the first 5 rows of the data set
-print(df.head())
+print(df.head()) 
 
 # determine the datatype of each column
 print(df.dtypes)
 
 # print the unique values for the columns **ca** and **thal**
-print(df.ca.unique())
+print(df.ca.unique()) 
 print(df.thal.unique())
 
 # determine how many rows contain missing values in the columns **ca** and **thal**
-print(df.ca.isnull().sum())
-print(df.thal.isnull().sum())
+print(df.ca.isnull().sum()) 
+print(df.thal.isnull().sum()) 
 
 # determine how many rows contain missing values, the python code is below
-len(df.loc[(df['ca'] == '?') | (df['thal'] == '?')])
+len(df.loc[(df['ca'] == '?') | (df['thal'] == '?')]) 
 
 # since only 6 rows have missing values, let's look at them
 print(df.loc[(df['ca'] == '?') | (df['thal'] == '?')])
 
 # count the number of rows in the full dataset
-print(len(df))
+print(len(df)) 
 
 # remove the rows with missing values
-df = df.dropna()
+df = df.dropna() 
 
 # verify that the rows with missing values have been removed
 print(len(df))
@@ -64,15 +64,13 @@ y[y_not_zero_idx] = 1
 y.unique()
 
 # split the data into training and testing sets
-X_train, X_test, y_train, y_test = train_test_split(X_encoded, y, test_size=0.2, random_state=0)
+X_train, X_test, y_train, y_test = train_test_split(X_encoded, y, test_size=0.2, random_state=0) 
 
 # use this data to run a decision tree on the data
-tree = DecisionTreeClassifier(max_depth=None, random_state=0)
-tree.fit(X_train, y_train)
-
-# predit new data
-y_pred = tree.predict(X_test)
+tree = DecisionTreeClassifier(max_depth=None, random_state=0) # create a decision tree classifier
+tree.fit(X_train, y_train) # fit the data to the tree
+y_pred = tree.predict(X_test) # this is the actual prediction
 
 # print how many levels of the tree were created and the accuracy of the model
-print(tree.tree_.max_depth)
-print(accuracy_score(y_test, y_pred))
+print(tree.tree_.max_depth) # this is the number of levels in the tree
+print(accuracy_score(y_test, y_pred)) # this is the accuracy of the model
