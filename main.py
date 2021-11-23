@@ -1,3 +1,15 @@
+
+#   ____        _           ____ _                  _             
+#  |  _ \  __ _| |_ __ _   / ___| | ___  __ _ _ __ (_)_ __   __ _ 
+#  | | | |/ _` | __/ _` | | |   | |/ _ \/ _` | '_ \| | '_ \ / _` |
+#  | |_| | (_| | || (_| | | |___| |  __/ (_| | | | | | | | | (_| |
+#  |____/ \__,_|\__\__,_|  \____|_|\___|\__,_|_| |_|_|_| |_|\__, |
+#                                                           |___/ 
+
+# AUTHORS : Austin Li, George Melek, Gianna Galard
+# CSC412 PROFESSOR IMBERMAN
+# DATE : 11/23/2021
+
 import pandas as pd 
 import numpy as np
 # from sklearn.tree import DecisionTreeClassifier
