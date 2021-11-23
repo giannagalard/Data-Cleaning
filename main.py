@@ -43,10 +43,10 @@ print(df.loc[(df['ca'] == '?') | (df['thal'] == '?')])
 print(len(df)) 
 
 # remove the rows with missing values
-df = df.dropna() 
+df = df.dropna() # dropna() is a method of the pandas dataframe that removes all rows with missing values
 
 # verify that the rows with missing values have been removed
-print(len(df))
+print(len(df)) # the length of the dataframe should be reduced by 6 rows
 
 # verify using the unique function that "ca" and "thal" do not have missing values
 print(df.ca.unique())
@@ -59,8 +59,8 @@ X = df.iloc[:,:-1] # this line of code is the same as X = df.drop(['ca'], axis=1
 y = df.iloc[:,-1] # this line of code is the same as y = df['ca']
 
 # print the head of both the X and y dataframes so that you can verify this worked correctly
-print(X.head())
-print(y.head())
+print(X.head()) # this is the independent variables
+print(y.head()) # this is the dependent variables
 
 X_encoded = pd.get_dummies(X, columns=['cp',
  'restecg',
@@ -69,10 +69,10 @@ X_encoded = pd.get_dummies(X, columns=['cp',
 
 X_encoded.head()
 
-y.unique() 
+y.unique() # this should return the unique values in the dependent variable
 
-y_not_zero_idx = y > 0
-y[y_not_zero_idx] = 1
+y_not_zero_idx = y > 0 # this is a boolean array that is true if the dependent variable is greater than 0
+y[y_not_zero_idx] = 1 # this changes the dependent variable to 1 if it is greater than 0
 y.unique()
 
 # split the data into training and testing sets
