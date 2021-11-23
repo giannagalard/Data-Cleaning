@@ -50,3 +50,31 @@ y = df.iloc[:,-1] # this line of code is the same as y = df['ca']
 print(X.head())
 print(y.head())
 
+X_encoded = pd.get_dummies(X, columns=['cp',
+ 'restecg',
+'slope',
+ 'thal'])
+
+X_encoded.head()
+
+y.unique() 
+
+y_not_zero_idx = y > 0
+y[y_not_zero_idx] = 1
+y.unique()
+
+# split the data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X_encoded, y, test_size=0.2, random_state=0)
+
+# use this data to run a decision tree on the data
+tree = DecisionTreeClassifier(max_depth=None, random_state=0)
+tree.fit(X_train, y_train)
+
+# predit new data
+y_pred = tree.predict(X_test)
+
+# print how many levels of the tree were created
+print(tree.max_depth)
+
+# print the accuracy of the model
+print(accuracy_score(y_test, y_pred))
