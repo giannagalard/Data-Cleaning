@@ -73,8 +73,6 @@ tree.fit(X_train, y_train)
 # predit new data
 y_pred = tree.predict(X_test)
 
-# print how many levels of the tree were created
-print(tree.max_depth)
-
-# print the accuracy of the model
+# print how many levels of the tree were created and the accuracy of the model
+print(tree.tree_.max_depth)
 print(accuracy_score(y_test, y_pred))
