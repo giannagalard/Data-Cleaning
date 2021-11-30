@@ -6,7 +6,7 @@
 #  |____/ \__,_|\__\__,_|  \____|_|\___|\__,_|_| |_|_|_| |_|\__, |
 #                                                           |___/ 
 
-# AUTHORS : Austin Li, George Melek, Gianna Galard
+# AUTHORS : Gianna Galard, George Melek, Austin Li
 # CSC412 PROFESSOR IMBERMAN
 # DATE : 11/23/2021
 
@@ -30,20 +30,22 @@ print(df.ca.unique())
 print(df.thal.unique())
 
 # determine how many rows contain missing values in the columns **ca** and **thal**
-print(df.ca.isnull().sum()) 
-print(df.thal.isnull().sum()) 
+# print(df.ca.isnull().sum()) 
+# print(df.thal.isnull().sum()) 
 
 # determine how many rows contain missing values, the python code is below
 len(df.loc[(df['ca'] == '?') | (df['thal'] == '?')]) 
 
 # since only 6 rows have missing values, let's look at them
-print(df.loc[(df['ca'] == '?') | (df['thal'] == '?')])
+missing = df.loc[(df['ca'] == '?') | (df['thal'] == '?')]
+missing
 
 # count the number of rows in the full dataset
-print(len(df)) 
+len(df)
 
 # remove the rows with missing values
-df = df.dropna() # dropna() is a method of the pandas dataframe that removes all rows with missing values
+# df = df.dropna() # dropna() is a method of the pandas dataframe that removes all rows with missing values
+df.drop(missing.index, inplace=True) # inplace=True means that the changes are made in the original dataframe
 
 # verify that the rows with missing values have been removed
 print(len(df)) # the length of the dataframe should be reduced by 6 rows
@@ -54,13 +56,19 @@ print(df.thal.unique())
 
 # split the data into dependent and independent variables
 # the column of data that we will to to make classifications
-X = df.iloc[:,:-1] # this line of code is the same as X = df.drop(['ca'], axis=1)
+#X = df.iloc[:,:-1] # this line of code is the same as X = df.drop(['hd'], axis=1)
+X = df.copy()
+X.drop(['hd'], axis=1, inplace=True)
 # the column of data that we want to predict
-y = df.iloc[:,-1] # this line of code is the same as y = df['ca']
+y = df.copy()
+y = y['hd']
+#y = df.iloc[:,-1] # this line of code is the same as y = df['hd']
 
 # print the head of both the X and y dataframes so that you can verify this worked correctly
 print(X.head()) # this is the independent variables
 print(y.head()) # this is the dependent variables
+
+X['restecg'].unique() # this is the unique values for the restecg column
 
 X_encoded = pd.get_dummies(X, columns=['cp',
  'restecg',
